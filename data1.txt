@@ -1,0 +1,6 @@
+# The first integer represents the number of pages.
+# Subsequent integers constitute the reference stream.
+# The reference stream consists of a list of pages which 
+# will be accessed in the order from left to right.
+
+19 0 1 2 0 3 0 4 2 3 0 3 2 1 2 0 1 7 0 1
