@@ -133,7 +133,7 @@ public class assingment4 {
 					String pagefault = findoldfifo(memoryarray,page,Integer.valueOf(number[i+1]),count).pagefault;
 					count = findoldfifo(memoryarray,page,Integer.valueOf(number[i+1]),count).count;
 					//System.out.println(count);
-					page[old] = number[i+1]; 
+					if(!issame(page, old,Integer.valueOf(number[i+1]) )){page[old] = number[i+1]; 
 					
 					memoryarray[old] = String.valueOf(2); 
 					//System.out.println(old + " old");
@@ -144,7 +144,7 @@ public class assingment4 {
 							//System.out.println(j + " dd");
 							memoryarray[j] = String.valueOf(Integer.valueOf(memoryarray[j]) - 1);
 						}
-					}
+					}}
 					System.out.println(number[i+1]+" --> " + Arrays.toString(page) +" "+ pagefault);
 					
 					
@@ -158,6 +158,14 @@ public class assingment4 {
 		System.out.println();
 		System.out.println("Total number of page faults is " + count+".");
 	}
+	
+	public static boolean issame(String[] page,int path,int value) {
+		if(Integer.valueOf(page[path]) == value ) {
+			return true;
+		}
+		return false;
+	}
+	
 	public static String diff(String[] page,int t) 
 	{		
 		String path = "";
@@ -192,23 +200,23 @@ public class assingment4 {
 	}
 	
 	public static twovalue findoldfifo(String[] memoryarray,String[] page, int t,int count) 
-	{	String path="";
+	{	String path=diff(page,t);
 		String pagefault="";
-		
+	
 		if(path.equals("")) {
-			for (int i = 0; i < memoryarray.length; i++) {
-				if(Integer.valueOf(memoryarray[i]) == 0) {
-					path = String.valueOf(i);
-				}
+		for (int i = 0; i < memoryarray.length; i++) {
+			if(Integer.valueOf(memoryarray[i]) == 0) {
+				path = String.valueOf(i);
 			}
-			pagefault = "page fault";
-			count+=1;
 		}
-		
-		
-		twovalue twovalue = new twovalue(Integer.valueOf(path), pagefault,count);
-		return twovalue;
+		pagefault = "page fault";
+		count+=1;
 	}
+	
+	
+	twovalue twovalue = new twovalue(Integer.valueOf(path), pagefault,count);
+	return twovalue;
+}
 	
 	
 	
